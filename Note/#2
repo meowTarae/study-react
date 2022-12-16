@@ -1,0 +1,17 @@
+!   React 사용 방법 
+        
+    간단하게 react, react-dom을 import하면 사용할 순 있다.
+
+    <script>
+        const root = document.getElementById("root"); // html에 있는 div
+        const mySpan = React.createElement(
+        "span",
+        { id: "bla-bla", style: { color: "red" } },
+        "Hello!"
+        );
+    
+        ReactDOM.render(mySpan, root);
+    </script>
+
+    위와 같은 방법으로 사용 가능하다.
+    하지만, 확실히 너무 불편해.
