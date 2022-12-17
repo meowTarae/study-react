@@ -15,3 +15,21 @@
 
     위와 같은 방법으로 사용 가능하다.
     하지만, 확실히 너무 불편해.
+
+
+
+!   불편하기 때문에..
+    
+    <script>
+        const title = () => {
+            return (
+                <h2 id="title" onMouseEnter={()=>console.log("hi")}>
+                  Hello
+                </h2>
+            );
+        }
+    </script>
+
+    HTML에서 사용하던 방식 고대로 사용 후, 
+    바벨을 돌려서 처음 방식으로 만들면 편하게 사용 가능하다.
+    
