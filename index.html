@@ -11,17 +11,19 @@
     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text">
+    <script type="text/babel">
       const root = document.getElementById("root");
-      const App = () => {
+      function App() {
         const [count, setCount] = React.useState(0);
-        const onClick = ()=>{
-          setCount(count+1);
-        }
+        const onClick = () => {
+          setCount(count + 1);
+        };
+        return (
           <div>
             <h1>Total click : {count}</h1>
             <button onClick={onClick}>Click</button>
           </div>
+        );
       }
       ReactDOM.render(<App />, root);
     </script>
