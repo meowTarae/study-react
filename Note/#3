@@ -19,6 +19,13 @@
 
     const data = React.useState();
     React.useState() 함수는 초기값을 설정할 수 있음.
+
+    ex )
+    const data = React.useState(0);
+        data의 default 값은 0이다.
+    const boolean = React.useState(false);
+        boolean의 default 값은 false 이다.
+        
         
     console.log(data); 해보면
     => [undefined, f ]
@@ -29,3 +36,31 @@
 
     f를 modifier라고 부를게..
     modifier는 어떤 값이 들어오든, data를 그 값으로 업데이트하고, rerendering 해줌.
+
+
+    ex )
+    const [data, modifier] = React.useState(0);
+    data를 변경하는 방법은
+    1. modifier(data + 1);
+    2. modifier((prev) => prev + 1);
+
+    1번은 data 값이 다른 곳에서 사용될 수 있으므로
+    2번을 사용하는 것이 안전하다.
+
+
+
+!   JSX
+    HTML과 유사함.
+    HTML과 다른 점은, class 대신 className을 사용한다는 것.
+    + label의 for 대신 htmlFor을 사용한다는 것.
+
+    그리고, JS나 style은 객체로 작성해야 한다는 것.
+    ex) style={{color: 'red'}}
+    이렇게 작성해야 한다.
+
+    JSX에서는 if문을 사용할 수 없다.
+    대신, 삼항연산자를 사용한다.
+    ex) {data === 1 ? <h1>1</h1> : null}
+
+
+
