@@ -1,0 +1,58 @@
+!   Prop
+
+    부모 -> 자식 컴포넌트로 데이터를 전달할 때 사용하는 속성이다.
+
+    ex )
+    function Btn(props){
+        ; pros는 property의 줄임말로, 컴포넌트의 속성을 의미한다.
+        ; props라고 적는 대신, {cat}처럼 ES6 문법을 사용해도 된다.
+        return (
+            <button>{props.cat}</button>
+        )
+    }
+
+    function App(){
+        return (
+            <div>
+                <Btn cat="tarae" />
+                <Btn cat="indi" />
+                ; cat이 Btn의 props이다.
+            </div>
+        )
+    }
+
+
+
+!   Memo
+    부모 컴포넌트가 리렌더링 될 때, 자식 컴포넌트도 리렌더링 되는데, 이를 방지하기 위해 사용한다.
+    
+
+    ex )    (Btn은 위 함수와 같다고 생각.)
+    const increseCount = () => setCount(count + 1);
+    function App(){
+        const [count, setCount] = useState(0);
+        return (
+            <div>
+                <Btn cat="tarae" count={count} jump={increseCount} />
+                ; props로 jump를 넘긴 후, Btn에서 onClick={props.jump}으로 함수 사용도 된다.
+                <Btn cat="indi" />
+            </div>
+        )
+    }
+
+
+    위와 같은 경우, indi는 변하는 값이 없지만, tarae가 변하기에 indi까지 같이 리렌더링 된다.
+        => 최적화 작업 필요함! 이를 위해 memo를 사용한다.
+
+    수정 )
+    const MemoBtn = React.memo(Btn);
+    function App(){
+        return (
+            <div>
+                <MemoBtn cat="tarae" count={count} jump={increseCount} />
+                <MemoBtn cat="indi" />
+            </div>
+        )
+    }
+
+    이렇게 하면, indi는 변하는 값이 없을 때 리렌더링 되지 않음.
