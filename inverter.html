@@ -16,9 +16,8 @@
       #root > div {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        height: 100%;
+        justify-content: center;
       }
       #root {
         position: absolute;
@@ -40,8 +39,7 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
       const root = document.getElementById("root");
-
-      function App() {
+      function MinutesHours() {
         const [amount, setAmount] = React.useState(null);
         const [flipped, setFlipped] = React.useState(true);
         const onChange = (event) => {
@@ -56,7 +54,7 @@
         };
         return (
           <div>
-            <h1>Converter!</h1>
+            <h1>Minutes / Hours</h1>
             <div>
               <label htmlFor="minutes">Minutes</label>
               <input
@@ -83,6 +81,74 @@
             <button onClick={onFlip}>
               {flipped ? "Hours to Minutes" : "Minutes to Hours"}
             </button>
+          </div>
+        );
+      }
+      function KiloMiles() {
+        const [distance, setDistance] = React.useState("");
+        const [flipped, setFlipped] = React.useState(false);
+        const onChange = (event) => {
+          setDistance(event.target.value);
+        };
+        const reset = () => {
+          setDistance("");
+        };
+        const convert = () => {
+          setFlipped((prev) => !prev);
+          reset();
+        };
+        return (
+          <div>
+            <h1>Kilometers / Miles</h1>
+            <label for="kilos">Kilometers</label>
+            <input
+              id="kilos"
+              type="number"
+              placeholder="Input kilometers!"
+              value={flipped ? (distance * 1.60934).toFixed(5) : distance}
+              onChange={onChange}
+              disabled={flipped ? true : false}
+            />
+            <label for="miles">Miles</label>
+            <input
+              id="miles"
+              type="number"
+              placeholder="Input miles!"
+              value={flipped ? distance : (distance / 1.60934).toFixed(5)}
+              onChange={onChange}
+              disabled={flipped ? false : true}
+            />
+            <button onClick={reset}>Reset</button>
+            <button onClick={convert}>Miles to Kilo</button>
+          </div>
+        );
+      }
+      function App() {
+        const [index, setIndex] = React.useState("0");
+        const onChange = (event) => {
+          setIndex(event.target.value);
+        };
+        return (
+          <div>
+            <h1>Converter</h1>
+            <select
+              name="converters"
+              id="converters"
+              value={index}
+              onChange={onChange}
+            >
+              <option value="0">Select</option>
+              <option value="1">Minutes & Hours</option>
+              <option value="2">Km & Miles</option>
+            </select>
+            <hr></hr>
+            {index === "0" ? (
+              <h4>Choose converter what you want!</h4>
+            ) : index === "1" ? (
+              <MinutesHours />
+            ) : index === "2" ? (
+              <KiloMiles />
+            ) : null}
           </div>
         );
       }

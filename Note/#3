@@ -64,3 +64,12 @@
 
 
 
+!   삼항연산자도 옵션 여러개 붙일 수 있는듯...?
+
+    {index === "0" ? (
+        <h4>Choose converter what you want!</h4>
+    ) : index === "1" ? (
+        <MinutesHours />
+    ) : index === "2" ? (
+        <KiloMiles />
+    ) : null}
