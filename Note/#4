@@ -56,3 +56,32 @@
     }
 
     이렇게 하면, indi는 변하는 값이 없을 때 리렌더링 되지 않음.
+
+
+
+!   Prop Types
+
+    React에서 지원하며, TS처럼 prop에 타입을 지정할 수 있다.
+
+    ex)
+
+    import PropTypes from 'prop-types';
+
+    Btn.propTypes = {
+        cat: PropTypes.string.isRequired,
+        count: PropTypes.number.isRequired,
+        jump: PropTypes.func.isRequired
+    }
+
+
+
+!   memo 컴포넌트에도 propTypes 지정할 수 있다.
+    ex)
+    const MemoBtn = React.memo(Btn);
+    MemoBtn.propTypes = {
+        cat: PropTypes.string.isRequired,
+        count: PropTypes.number.isRequired,
+        jump: PropTypes.func.isRequired
+    }
+
+    이렇게 하면, memo 컴포넌트에 propTypes를 지정할 수 있다.

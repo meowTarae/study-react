@@ -40,7 +40,7 @@
     <script type="text/babel">
       const root = document.getElementById("root");
       function MinutesHours() {
-        const [amount, setAmount] = React.useState(null);
+        const [amount, setAmount] = React.useState();
         const [flipped, setFlipped] = React.useState(true);
         const onChange = (event) => {
           setAmount(event.target.value);
@@ -85,7 +85,7 @@
         );
       }
       function KiloMiles() {
-        const [distance, setDistance] = React.useState("");
+        const [distance, setDistance] = React.useState();
         const [flipped, setFlipped] = React.useState(false);
         const onChange = (event) => {
           setDistance(event.target.value);
