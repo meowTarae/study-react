@@ -1,8 +1,10 @@
+import Button from "./Button";
+
 function App() {
   return (
-    <div>
-      <h1>React 18</h1>
-    </div>
+    <>
+      <Button text={"Hello React!"} />
+    </>
   );
 }
 
