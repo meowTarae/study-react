@@ -1,0 +1,128 @@
+!   React에서의 css
+
+    React에서의 css는 다음과 같은 방법으로 사용할 수 있다.
+        1. css 파일을 import 하여 사용하는 방법
+        2. css를 직접 작성하는 방법
+        3. styled-components 방법
+        4. css module 방법
+
+
+    1. css 파일을 import 하여 사용하는 방법
+
+    import './App.css';
+
+    function App() {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>
+              Edit <code>src/App.js</code> and save to reload.
+            </p>
+            <a
+              className="App-link"
+              href="https://reactjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn React
+            </a>
+          </header>
+        </div>
+      );
+    }
+
+    export default App;
+
+    2. css를 직접 작성하는 방법
+
+        import React from 'react';
+
+        function App() {
+          const name = 'react';
+          const style = {
+            backgroundColor: 'black',
+            color: 'aqua',
+            fontSize: 24, // 기본 단위 px
+            fontWeight: 'bold', // 숫자가 아닌 경우 ''로 감싸준다.
+            padding: 16 // 기본 단위 px
+          };
+          return <div style={style}>{name}</div>;
+        }
+
+        export default App;
+
+
+    3. styled-components 방법
+
+        import React from 'react';
+        import styled, { css } from 'styled-components';
+
+        const Box = styled.div`
+          background: ${props => props.color || 'blue'};
+          padding: 1rem;
+          display: flex;
+        `;
+
+        const Button = styled.button`
+          background: white;
+          color: black;
+          border-radius: 4px;
+          padding: 0.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
+          font-size: 1rem;
+          font-weight: 600;
+
+          /* & 문자를 사용하여 Sass처럼 자기 자신 선택 가능 */
+          &:hover {
+            background: rgba(255, 255, 255, 0.9);
+          }
+
+          /* 다음 코드는 inverted 값이 true일 때 특정 스타일을 부여해줍니다. */
+          ${props =>
+            props.inverted &&
+            css`
+              background: none;
+              border: 2px solid white;
+              color: white;
+              &:hover {
+                background: white;
+                color: black;
+              }
+            `}
+
+          & + button {
+            margin-left: 1rem;
+          }
+        `;
+
+        function App() {
+          return (
+            <Box color="black">
+              <Button>안녕하세요</Button>
+              <Button inverted={true}>테두리만</Button>
+            </Box>
+          );
+        }
+
+        export default App;
+
+    4. css module 방법
+
+        import React from 'react';
+        import styles from './App.module.css';
+
+        function App() {
+            return (
+                <div className={styles.wrapper}>
+                <div className={`${styles.box} ${styles.inverted}`}>
+                    <div className={styles.inner}>hi</div>
+                </div>
+                </div>
+            );
+        }
+
+        export default App; 
