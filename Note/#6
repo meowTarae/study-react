@@ -1,0 +1,25 @@
+!   간단한 팁
+
+    CRA 쓰면 React.useState()가 아니라
+
+        import { useState } from 'react';
+
+        const [counter, setCounter] = useState(); 로 쓸 수 있다.
+
+
+
+!   코드를 한번만 실행하고 싶을때
+
+    useState때문에 변화를 원치 않아도, 같은 컴포넌트의 함수는 여러번 실행될 수 있다.
+    이때, useEffect를 사용할 수 있다.
+
+        import { useEffect } from 'react';
+
+        useEffect(() => {
+          console.log("Hello");
+        }, [counter]);
+
+    useEffect는 두번째 인자로 배열을 받는데, 
+    1) 처음 실행 후, 이 배열에 들어간 값이 변할때만 실행된다.
+    2) 만약, 빈 배열을 넣으면, 처음에 한번만 실행된다.
+    3) 배열에 값을 여러개 넣으면, 여러개 중 하나라도 변할때 실행된다.
