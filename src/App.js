@@ -6,10 +6,16 @@ function App() {
   const onChange = (event) => {
     setToDo(event.target.value);
   };
-  const onClick = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
+    if (toDo === "") return;
     setToDo("");
-    setToDos([toDo, ...toDos]);
+    setToDos((prevToDos) => [toDo, ...prevToDos]);
+  };
+  const deleteBtn = (index) => {
+    // setToDos((toDoArray) => toDoArray.filter((item, i) => i !== index));
+    // setToDos(toDos.filter((item, todoIndex) => index !== todoIndex));
+    console.log("hello");
   };
   return (
     <>
@@ -21,10 +27,19 @@ function App() {
           value={toDo}
           onChange={onChange}
         />
-        <button type="submit" onClick={onClick}>
+        <button type="submit" onClick={onSubmit}>
           Add
         </button>
       </form>
+      <hr />
+      <ul>
+        {toDos.map((item, index) => (
+          <li key={index}>
+            {item}
+            <button onClick={deleteBtn(index)}>❌</button>
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
