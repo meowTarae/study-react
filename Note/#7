@@ -22,3 +22,4 @@
     
     onClick={() => deleteBtn(index)} 처럼
     arrow func를 사용하면, 클릭할때까지 기다려준다. 이 방법 쓰자
+
