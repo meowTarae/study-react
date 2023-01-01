@@ -23,3 +23,15 @@
     onClick={() => deleteBtn(index)} 처럼
     arrow func를 사용하면, 클릭할때까지 기다려준다. 이 방법 쓰자
 
+
+
+!   Select - option
+
+    <select onChange={onChange}>
+        <option key={index} value={JSON.stringify(coin)}>1</option>
+        <option key={index} value={JSON.stringify(coin)}>2</option>
+        <option key={index} value={JSON.stringify(coin)}>3</option>
+    </select>
+
+    이렇게 option에 value 값 걸어주면
+    onChange 함수에서 e.target.value로 coin값을 받아올 수 있음
