@@ -1,0 +1,18 @@
+! npm i gh-pages --save-dev
+
+    Then add the following to your package.json :)
+
+    실행을 위해, package.json의 명령어인 build를 사용하자.
+    npm i build를 하면, production ready code를 만들어준다.
+                        => 코드가 압축되고, 최적화된다 like webpack
+    해당 code는 build 폴더가 자동 생성된 후, 그 안에 들어간다.
+
+    우리는 이 build 폴더를 깃헙에 deploy 할거야!
+    근데 push 전에, package.json에 homepage를 추가해줘야함.
+    "homepage": "Insert your github repository link!"
+
+    다음은 deploy랑 predeploy를 추가할거임.
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
+    predeploy는 deploy를 하기 전에, build를 하라는 명령어임.
+    npm run deploy 만 입력해도, npm 이 알아서 predeploy를 먼저 실행시켜줌. 어썸!

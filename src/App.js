@@ -1,21 +1,17 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Detail from "./routes/Detail";
-import Home from "./routes/Home";
+import styled from "styled-components";
+
+const Btn = styled.button`
+  background: ${(props) => (props ? "red" : "blue")};
+  width: 100px;
+  height: 100px;
+`;
+
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/abot-us">
-          <h1>Hello</h1>
-        </Route>
-        <Route path="/movie/:id">
-          <Detail />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
+    <>
+      <Btn bgColor={false} />
+    </>
   );
 }
+
 export default App;
