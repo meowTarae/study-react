@@ -1,11 +1,16 @@
-import Circle from "./Circle";
+import React from "react";
 
 function App() {
+  const onChange = (event: React.FormEvent<HTMLInputElement>) => {
+    console.log(event.currentTarget.value);
+  };
   return (
-    <div>
-      <Circle borderColor="yellow" bgColor="teal" />
-      <Circle text="im here" bgColor="tomato" />
-    </div>
+    <>
+      <form>
+        <input type="text" placeholder="Hello!" onChange={onChange} />
+        <button>Login</button>
+      </form>
+    </>
   );
 }
 

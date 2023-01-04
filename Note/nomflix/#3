@@ -32,3 +32,76 @@
         }
 
     interface는 object의 타입을 정의해줌.
+
+
+
+!   TS에서의 useState
+
+    const [value, setValue] = useState<string | number>('tarae');
+    초기값이 string이어도 number로 바뀔 수 있잖아?
+    그럴경우, 이렇게 <> arrow bracket 안에 타입을 지정해줘야함.
+    안그러면 TS가 자동적으로 type변환 일어나는 것에 에러를 띄움. 
+
+
+
+!   TS는 function event type도 관리해줘야 한다.
+
+    const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+                    // e가 어데서 온 event임? => form(내부의 input)!
+                    // form 내부의 어떤 element? => input!
+        
+        console.log(e.currentTarget.value);
+        // 그냥 target 아니고 currentTarget이다. 기능은 둘 다 같음 ㅇㅇ;
+    }
+
+
+
+!   Styled-components (TypeScript)
+
+    사용을 위해서, interface를 declare해줘야 함.
+    해서 파일명도 ~~~.d.ts로 해줘야함.
+
+    - styled.d.ts -
+        import "styled-components";
+
+        declare module "styled-components" {
+          export interface DefaultTheme {
+            bgColor: string;
+            textColor: string;
+            btnColor: string;
+          }
+        }
+        // interface명인 defaultTheme은 기본적으로 비어있음.
+
+    - theme.tsx -
+        import { DefaultTheme } from "styled-components";
+
+        const lightTheme: DefaultTheme = {
+          bgColor: "white",
+          textColor: "black",
+          btnColor: "tomato",
+        };
+        // DefaultTheme의 프로퍼티를 확인해주기 때문에 프로퍼티가 없는게 있다면, 에러를 띄워줌.
+    
+
+    - index.tsx -
+        import { ThemeProvider } from "styled-components";
+
+        root.render(
+          <>
+            <ThemeProvider theme={lightTheme}>
+              <App />
+            </ThemeProvider>
+          </>
+        );
+        // ThemeProvider라는 컴포넌트를 사용해서 
+        // theme을 자식 컴포넌트들에게 전달해줌.
+
+
+
+!   SyntheticEvent (합성 이벤트)
+
+    form에서 사용했던 onChange, onSubmit 등의 이벤트들은 모두 SyntheticEvent이다.
+    만약 어떤 html element에서 발생한 event를 다루고 싶다면,
+    https://ko.reactjs.org/docs/events.html#gatsby-focus-wrapper 
+    요기를 방문해보자구
