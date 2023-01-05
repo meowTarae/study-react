@@ -1,0 +1,37 @@
+!   Route 설정
+
+    function Router() {
+      return (
+        <BrowserRouter>
+          <Switch>  // Switch는 한번에 하나의 Route를 렌더링하는 방법임.
+            <Route path="/:coinId">
+              <Coin />
+            </Route>
+
+            <Route path="/">
+              <Coins />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      );
+    }
+
+
+
+!   전역 css
+
+    const GlobalStyle = createGlobalStyle`
+        body {
+            background-color: #f2f2f2;
+        }
+    `;
+
+    createGlobalStyle도 styled-components의 일종임.
+
+
+
+!   Tip
+
+    react에서는 a tag말고 link 쓰라고 햇자너
+    렌더링 이후에 확인해보니까 link가 a태그로 바뀌더라고 ㅇㅇ;
+    그래서 a 태그로 css 작성하니까 먹히더라 ㅇㅅㅇ;
