@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import { Switch, Route, useLocation, useParams } from "react-router";
+import {
+  Switch,
+  Route,
+  useLocation,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Chart from "./Chart";
 import Price from "./Price";
-
 const Title = styled.h1`
   font-size: 48px;
-
   color: ${(props) => props.theme.accentColor};
 `;
 const Loader = styled.span`
@@ -24,7 +29,6 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
 `;
-
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
@@ -36,15 +40,37 @@ const OverviewItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 33%;
   span:first-child {
     font-size: 10px;
     font-weight: 400;
+
     text-transform: uppercase;
     margin-bottom: 5px;
   }
 `;
 const Description = styled.p`
   margin: 20px 0px;
+`;
+const Tabs = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 25px 0px;
+  gap: 10px;
+`;
+const Tab = styled.span<{ isActive: boolean }>`
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  color: ${(props) =>
+    props.isActive ? props.theme.accentColor : props.theme.textColor};
+  a {
+    padding: 7px 0px;
+    display: block;
+  }
 `;
 
 interface RouteParams {
@@ -56,7 +82,6 @@ interface RouteState {
 interface InfoData {
   id: string;
   name: string;
-
   symbol: string;
   rank: number;
   is_new: boolean;
@@ -77,7 +102,6 @@ interface InfoData {
 interface PriceData {
   id: string;
   name: string;
-
   symbol: string;
   rank: number;
   circulating_supply: number;
@@ -108,12 +132,15 @@ interface PriceData {
     };
   };
 }
+
 function Coin() {
-  const [loading, setLoading] = useState(true);
   const { coinId } = useParams<RouteParams>();
   const { state } = useLocation<RouteState>();
+  const [loading, setLoading] = useState(true);
   const [info, setInfo] = useState<InfoData>();
   const [priceInfo, setPriceInfo] = useState<PriceData>();
+  const priceMatch = useRouteMatch("/:coinId/price");
+  const chartMatch = useRouteMatch("/:coinId/chart");
   useEffect(() => {
     (async () => {
       const infoData = await (
@@ -163,11 +190,19 @@ function Coin() {
               <span>{priceInfo?.max_supply}</span>
             </OverviewItem>
           </Overview>
+          <Tabs>
+            <Tab isActive={chartMatch !== null}>
+              <Link to={`/${coinId}/chart`}>Chart</Link>
+            </Tab>
+            <Tab isActive={priceMatch !== null}>
+              <Link to={`/${coinId}/price`}>Price</Link>
+            </Tab>
+          </Tabs>
           <Switch>
-            <Route path={`/${coinId}/price`}>
+            <Route path={`/:coinId/price`}>
               <Price />
             </Route>
-            <Route path={`/${coinId}/chart`}>
+            <Route path={`/:coinId/chart`}>
               <Chart />
             </Route>
           </Switch>
@@ -176,5 +211,4 @@ function Coin() {
     </Container>
   );
 }
-
 export default Coin;

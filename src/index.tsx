@@ -1,15 +1,20 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "styled-components";
-import App from "./App";
 import { theme } from "./theme";
+import App from "./App";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>,
+const queryClient = new QueryClient();
 
-  document.getElementById("root")
+const container = document.getElementById("root") as HTMLElement;
+const root = createRoot(container);
+root.render(
+  <>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </QueryClientProvider>
+  </>
 );
