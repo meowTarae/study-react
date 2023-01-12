@@ -66,3 +66,25 @@
   일단 ThemeProvider처럼, index.tsx에서 App을 QueryClientProvider 태그로 감싸주자.
   그럼 사용할 수 있덩
 
+
+
+! useQuery 3번째 parameter
+
+  refetchInterval 이다.
+  특정 시간마다 refetch를 해주는 역할.
+
+
+
+! Helmet
+
+  Helmet은 head로 가는 direct link이다.
+  해서 Helmet 컴포넌트 안에 head 값들을 넣어주면, Document head 부분에 넣어줌.
+
+  ex)
+    <Helmet>
+      <title>
+        코인트래커
+      </title>
+      <link ~~~ />
+    </Helmet>
+  
