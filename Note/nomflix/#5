@@ -88,3 +88,23 @@
       <link ~~~ />
     </Helmet>
   
+
+
+! React-router-dom
+
+  우리 App에 URL을 가질 수 있게 해줌!
+  
+  <Route path={"/:coinId"}>
+    <Coin />
+  </Route>
+
+  이렇게 말야.
+
+  그리고 Coin 파일에서 해당 coinId 값을 사용하고 싶다?
+    => const params = useParams();
+       or const { coinId } = useParams();
+       
+       log(params) => coinId랑 [[Prototype]] 나옴 ㅇㅇ
+
+
+  
