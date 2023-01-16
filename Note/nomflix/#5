@@ -52,6 +52,19 @@
 
 
 
+! Link to
+
+  A 페이지에서 B 페이지로 이동할 때, 보통 텍스트를 넘겨줬잖아.
+  이후 해당 텍스트로 다시 fetch를 했었는데..
+  그런데 '데이터'를 넘겨줄 수 있다면??
+  'Behind the scene data'라고 부르며, Link tag인 to로 가능함.
+
+  단, 이는 A 페이지에서 Link를 클릭 했을때 발생하므로,
+  url을 B 페이지로 입력 후 접속하려하면 to로 넘겨받은 data가 없어서 에러남.
+  그러므로 이에 대한 조치를 해줘야 한다.
+  
+
+
 ! react query
 
   ex) const {isLoading, data} = useQuery<Interface>([queryKey], fetchFunc);
