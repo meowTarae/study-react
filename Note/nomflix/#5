@@ -67,12 +67,26 @@
 
 ! react query
 
-  ex) const {isLoading, data} = useQuery<Interface>([queryKey], fetchFunc);
+  ex)
+    coin.tsx
+      const {isLoading, data} = useQuery<Interface>([queryKey], fetchFunc);
+
+    api.ts
+      export asyncc function fetchFunc() {
+        const json = await (await fetch(`주소`)).json();
+        return json;
+
+        or
+
+        return fetch(`주소`).then((promise) => promise.json());
+      } 
+
+    타 파일(api.ts)에선 json data의 promise를 가져와야 함
 
   우리가 일반적으로 하던 fetch 함수를 객체화 해서 타 파일에 저장했다고 가정.
   useQuery를 사용하면, 다른 파일에서 작성한 fetch func를 가져올 수 있음.
   또한 그 func가 로딩 중일때, isLoading이 true로 반환해줌.
-  
+
   data에는 fetch func에서 반환한 값이 들어가게 됨.
   useQuery는 data를 캐쉬에 저장해줌 => fetchFunc를 다시 호출하지 않음.
   
@@ -121,3 +135,20 @@
 
 
   
+! useRouteMatch
+
+  React Hook 중 하나로, 유저가 해당 url에 있는지 없는지를 체크해줌 !
+
+
+
+! FontAwesome
+
+  리액트에서 아이콘 쓰려면
+  docs에 나와있는 패키지들 싹 다 npm i 로 설치해주고
+  FontAwesome과 사용할 아이콘들을 import 해준다.
+  
+  styled components는
+    const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+      ~~~
+    `
+  위와 같이 나타내고 평소처럼 사용하면 댐!
