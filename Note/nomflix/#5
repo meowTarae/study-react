@@ -152,3 +152,16 @@
       ~~~
     `
   위와 같이 나타내고 평소처럼 사용하면 댐!
+
+
+
+! Error 1
+
+  '{ coinId: string; }' 형식은 'IntrinsicAttributes' 형식에 할당할 수 없습니다.
+  'IntrinsicAttributes' 형식에 'coinId' 속성이 없습니다.ts(2322)
+
+  위 에러는 Coin.tsx에서 Chart.tsx로 coinId 값을 보내주려할때 발생했다.
+  발생 이유는 Chart.tsx에서 coinId를 argument로 받는 func이 없었기 때문
+
+
+  
