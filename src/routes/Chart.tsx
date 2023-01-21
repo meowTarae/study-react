@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { fetchCoinHistory } from "../api";
 
@@ -15,11 +14,9 @@ interface dataProps {
 }
 
 function Chart({ coinId }: ChartProps) {
-  const { isLoading, data } = useQuery(["ohlcv", coinId], () =>
+  const { isLoading, data } = useQuery<dataProps>(["ohlcv", coinId], () =>
     fetchCoinHistory(coinId)
   );
-  console.log(data);
-
   return <>{isLoading ? "Now Loading..." : <ul></ul>}</>;
 }
 
