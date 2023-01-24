@@ -36,16 +36,41 @@ function Chart({ coinId }: ChartProps) {
           options={{
             chart: {
               type: "line",
-              height: "100%",
+              height: 300,
+              width: 500,
+              toolbar: {
+                show: false,
+              },
+              background: "transparent",
             },
+            grid: { show: false },
             theme: {
               mode: "dark",
             },
+            yaxis: {
+              show: false,
+            },
             stroke: {
-              width: 5,
+              width: 4,
               curve: "smooth",
             },
+            fill: {
+              type: "gradient",
+              gradient: {
+                gradientToColors: ["#0be881"],
+                stops: [0, 100],
+              },
+            },
+            colors: ["#0fbcf9"],
+            tooltip: {
+              y: {
+                formatter: (value) => `$${value.toFixed(2)}`,
+              },
+            },
             xaxis: {
+              axisBorder: { show: false },
+              axisTicks: { show: false },
+              labels: { show: false },
               type: "datetime",
               categories: data?.map((time) => {
                 let closeTime = new Date(time.time_close * 1000);
