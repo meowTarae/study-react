@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css"
+    />
+    <style>
+      body {
+        background-color: rgb(17, 24, 27);
+        padding: 20px;
+        height: 100vh;
+      }
+      .container {
+        margin-top: 10%;
+      }
+      h1 {
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function calculate(index, num1, num2) {
+      switch (index) {
+        case "1":
+          return num1 + num2;
+        case "2":
+          return num1 - num2;
+        case "3":
+          return num1 / num2;
+        case "4":
+          return num1 * num2;
+      }
+    }
+    function App() {
+      const [num1, setNum1] = React.useState(0);
+      const [num2, setNum2] = React.useState(0);
+      const [index, setIndex] = React.useState("0");
+      const [result, setResult] = React.useState();
+      const onChangeNum = (event) => {
+        const { value } = event.target;
+        console.log(typeof value);
+        event.target.id === "num1" ? setNum1(value) : setNum2(value);
+      };
+      const onChangeIndex = (event) => {
+        setIndex(event.target.value);
+      };
+      const onClickBtn = () => {
+        num1 && num2
+          ? setResult(
+              index !== "0"
+                ? calculate(index, +num1, +num2)
+                : "연산자를 선택해 주세요."
+            )
+          : setResult("숫자를 입력해 주세요.");
+      };
+      return (
+        <div className="container">
+          <h1>🔥 Calculator 🔥</h1>
+          <input
+            type="number"
+            id="num1"
+            onChange={onChangeNum}
+            placeholder="👉 Write a number..."
+          />
+          <input
+            type="number"
+            id="num2"
+            onChange={onChangeNum}
+            placeholder="👉 And another one..."
+          />
+          <select name="FAO" id="FAO" value={index} onChange={onChangeIndex}>
+            <option value="0">👉 Select operation</option>
+            <option value="1">+</option>
+            <option value="2">-</option>
+            <option value="3">/</option>
+            <option value="4">*</option>
+          </select>
+          <button onClick={onClickBtn}>Calculate</button>
+          <h1>{result}</h1>
+        </div>
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
