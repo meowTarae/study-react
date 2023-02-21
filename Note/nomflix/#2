@@ -105,3 +105,52 @@
         `;
         
     이렇게 해주면 darkTheme일때, lightTheme일때에 맞게 색상이 바뀐다.
+
+
+
+요약
+  1. 기본적인 styled components 및 porps 사용법 
+    const Container = styled.div`
+      background-color: ${(props)=>props.myBoxColor};
+    `
+  2. styled components 상속
+    const Heritence = styled(Container)`
+      ~~
+    `
+  3. form - input 속성 지정
+    const Input = styled.input.attrs({ required: true, minLength: 10 })`
+      ~~
+    `
+  4. 애니메이션
+    import { keyframes } from "styled-components";
+    const Animation = keyframes`
+      ~~
+    `
+  5. 컴포넌트 내부에서 다른 컴포넌트 호출
+    const A = styled.div`
+      span {  // A 컴포넌트 내부의 span
+        ~~
+      }
+      ${Input} {
+        ~~
+      }
+    `
+  6. Theme
+    index.js
+      improt {ThemeProvider} from "styled-components";
+
+      const darkMode = {
+        myTextColor: black;
+      }   
+
+      <ThemeProvider theme={darkMode}>
+        <App />
+      </ThemeProvider >
+
+    coin.tsx
+      const Container = styled.div`
+        color: ${(props)=>props.theme.myTextColor};
+        background-color: ${(props)=>props.coinColor};
+        ; 위에 theme 들어간거는 ThemeProvider가 App.js 를 감싸고있기에 사용 가능한 거여
+        ; 밑에 배경색은 coin.tsx 파일 내부의 <Container coinColor="black" /> 에서의 coinColor를 가져온거임.
+      `
