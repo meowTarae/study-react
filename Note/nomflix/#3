@@ -105,3 +105,15 @@
     만약 어떤 html element에서 발생한 event를 다루고 싶다면,
     https://ko.reactjs.org/docs/events.html#gatsby-focus-wrapper 
     요기를 방문해보자구
+
+
+
+테마 요약
+  styled.d.ts
+    textColor, bgColor 등의 타입을 설정
+
+  theme.ts 
+    const lightTheme:DefaultTheme = {
+      bgColor: "white"
+    }
+    처럼 유저가 셋팅하는 곳 

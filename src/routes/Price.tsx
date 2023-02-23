@@ -10,7 +10,7 @@ function Price({ coinId }: PriceProps) {
     ["ohlcv-Price", coinId],
     () => fetchCoinPrice(coinId),
     {
-      refetchInterval: 10000,
+      refetchInterval: 1000000,
     }
   );
 

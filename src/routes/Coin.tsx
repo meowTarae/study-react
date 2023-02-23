@@ -163,18 +163,13 @@ function Coin() {
     ["tickers", coinId],
     () => fetchCoinTickers(coinId),
     {
-      refetchInterval: 5000,
+      refetchInterval: 1000000,
     }
   );
   const loading = infoLoading || tickersLoading;
   return (
     <Container>
       <Helmet>
-        <link
-          rel="shortcut icon"
-          href="https://www.youtube.com/s/desktop/82a4cf4f/img/favicon.ico"
-          type="image/x-icon"
-        />
         <title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </title>
