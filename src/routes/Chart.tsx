@@ -7,11 +7,11 @@ const Container = styled.div`
   .apexcharts-tooltip {
     color: ${(props) => props.theme.accentColor};
   }
-  .apexcharts-tooltip-series-group.active {
-    background-color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  .apexcharts-tooltip-box {
+    border-radius: 16px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.87);
   }
 `;
 
@@ -66,7 +66,6 @@ function Chart({ coinId }: ChartProps) {
               labels: {
                 show: false,
               },
-
               axisBorder: {
                 show: false,
               },
@@ -84,11 +83,16 @@ function Chart({ coinId }: ChartProps) {
               show: false,
             },
             tooltip: {
+              theme: "false",
               enabled: true,
               followCursor: false,
               style: {
                 fontSize: "12px",
-                fontFamily: undefined,
+              },
+              x: {
+                show: true,
+                format: "dd MMM yy",
+                formatter: undefined,
               },
             },
             plotOptions: {
