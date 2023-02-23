@@ -15,12 +15,25 @@ import Chart from "./Chart";
 import Price from "./Price";
 import { Helmet } from "react-helmet";
 
-const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+const FontAwesomeIconHome = styled(FontAwesomeIcon)`
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
   margin-left: 12px;
+  opacity: 0.8;
+  &:hover {
+    transition: color 0.2s ease-in;
+    color: ${(props) => props.theme.accentColor};
+  }
+`;
+
+const FontAwesomeIconTheme = styled(FontAwesomeIcon)`
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 12px;
   opacity: 0.8;
   &:hover {
     transition: color 0.2s ease-in;
@@ -163,7 +176,7 @@ function Coin() {
     ["tickers", coinId],
     () => fetchCoinTickers(coinId),
     {
-      refetchInterval: 1000000,
+      refetchInterval: 10000,
     }
   );
   const loading = infoLoading || tickersLoading;
@@ -176,10 +189,10 @@ function Coin() {
       </Helmet>
       <Header>
         <Link to={`/`}>
-          <StyledFontAwesomeIcon
+          <FontAwesomeIconHome
             icon={faHome}
             className="fa-search"
-          ></StyledFontAwesomeIcon>
+          ></FontAwesomeIconHome>
         </Link>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}

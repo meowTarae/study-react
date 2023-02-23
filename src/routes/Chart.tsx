@@ -8,13 +8,19 @@ const Container = styled.div`
     color: ${(props) => props.theme.accentColor};
   }
   .apexcharts-tooltip-box {
-    border-radius: 16px;
+    border-radius: 8px;
     backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 255, 255, 0.87);
+    -webkit-backdrop-filter: blur(16px);
+    border: 0.2px solid ${(props) => props.theme.accentColor};
   }
 `;
-
+const NoData = styled.div`
+  width: 100%;
+  margin-top: 25px;
+  color: white;
+  font-size: 2em;
+  text-align: center;
+`;
 interface ChartProps {
   coinId: string;
 }
@@ -35,8 +41,7 @@ function Chart({ coinId }: ChartProps) {
     ["ohlcv-Chart", coinId],
     () => fetchCoinHistory(coinId),
     {
-      refetchInterval: 1000000,
-      // refecth 시간 되돌려놓자
+      refetchInterval: 10000,
     }
   );
 
@@ -106,7 +111,7 @@ function Chart({ coinId }: ChartProps) {
           }}
         />
       ) : (
-        <h2>There's no data.</h2>
+        <NoData>Sorry. There's no data.</NoData>
       )}
     </Container>
   );
