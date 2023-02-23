@@ -64,7 +64,6 @@ function Price({ coinId }: PriceProps) {
       refetchInterval: 10000,
     }
   );
-  console.log(data?.[19], data?.[20]);
 
   let priceData = data?.filter((v, i) => i >= 19);
   let nowTime = priceData

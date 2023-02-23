@@ -28,19 +28,6 @@ const FontAwesomeIconHome = styled(FontAwesomeIcon)`
   }
 `;
 
-const FontAwesomeIconTheme = styled(FontAwesomeIcon)`
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-right: 12px;
-  opacity: 0.8;
-  &:hover {
-    transition: color 0.2s ease-in;
-    color: ${(props) => props.theme.accentColor};
-  }
-`;
-
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
