@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/meowTarae/study-react/static/js/main.3b863b8b.js",
-    "index.html": "/meowTarae/study-react/index.html",
-    "main.3b863b8b.js.map": "/meowTarae/study-react/static/js/main.3b863b8b.js.map"
+    "main.js": "/study-react/static/js/main.358bf5f1.js",
+    "index.html": "/study-react/index.html",
+    "main.358bf5f1.js.map": "/study-react/static/js/main.358bf5f1.js.map"
   },
   "entrypoints": [
-    "static/js/main.3b863b8b.js"
+    "static/js/main.358bf5f1.js"
   ]
 }
