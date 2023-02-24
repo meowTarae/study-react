@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg -core": "^6.2.1",
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@tanstack/react-query": "^4.20.9",
@@ -14,6 +14,7 @@
     "@types/node": "^16.18.11",
     "@types/react": "^18.0.26",
     "apexcharts": "^3.36.3",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-dom": "^18.2.0",

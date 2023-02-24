@@ -23,6 +23,7 @@ const NoData = styled.div`
 `;
 interface ChartProps {
   coinId: string;
+  isDark: boolean;
 }
 
 interface dataProps {
@@ -36,7 +37,7 @@ interface dataProps {
   market_cap: number;
 }
 
-function Chart({ coinId }: ChartProps) {
+function Chart({ coinId, isDark }: ChartProps) {
   const { isLoading, data } = useQuery<dataProps[]>(
     ["ohlcv-Chart", coinId],
     () => fetchCoinHistory(coinId),

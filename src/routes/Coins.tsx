@@ -3,6 +3,22 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const FontAwesomeIconTheme = styled(FontAwesomeIcon)``;
+const Icon = styled.span`
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 12px;
+  opacity: 0.8;
+  &:hover {
+    transition: color 0.2s ease-in;
+    color: ${(props) => props.theme.accentColor};
+  }
+`;
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -14,6 +30,7 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 const CoinsList = styled.ul``;
 const Coin = styled.li`
@@ -59,7 +76,12 @@ interface ICoin {
   type: string;
 }
 
-function Coins() {
+interface ICoinsProps {
+  toggleDark: () => void;
+  isDark: boolean;
+}
+
+function Coins({ toggleDark, isDark }: ICoinsProps) {
   const { isLoading, data } = useQuery<ICoin[]>(["allCoins"], fetchCoins);
   return (
     <Container>
@@ -68,6 +90,12 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>코인</Title>
+        <Icon onClick={toggleDark}>
+          <FontAwesomeIconTheme
+            icon={isDark ? faSun : faMoon}
+            className="fa-search"
+          ></FontAwesomeIconTheme>
+        </Icon>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>

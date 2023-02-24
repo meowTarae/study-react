@@ -1,4 +1,4 @@
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "react-query";
 import {
@@ -27,7 +27,19 @@ const FontAwesomeIconHome = styled(FontAwesomeIcon)`
     color: ${(props) => props.theme.accentColor};
   }
 `;
-
+const FontAwesomeIconTheme = styled(FontAwesomeIcon)``;
+const Icon = styled.span`
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 12px;
+  opacity: 0.8;
+  &:hover {
+    transition: color 0.2s ease-in;
+    color: ${(props) => props.theme.accentColor};
+  }
+`;
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
@@ -149,8 +161,12 @@ interface PriceData {
     };
   };
 }
+interface ICoinProps {
+  toggleDark: () => void;
+  isDark: boolean;
+}
 
-function Coin() {
+function Coin({ isDark, toggleDark }: ICoinProps) {
   const { coinId } = useParams<RouteParams>();
   const { state } = useLocation<RouteState>();
   const priceMatch = useRouteMatch("/:coinId/price");
@@ -184,6 +200,12 @@ function Coin() {
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
+        <Icon onClick={toggleDark}>
+          <FontAwesomeIconTheme
+            icon={isDark ? faSun : faMoon}
+            className="fa-search"
+          ></FontAwesomeIconTheme>
+        </Icon>
       </Header>
       {loading ? (
         <Loader>Loading...</Loader>
@@ -200,7 +222,7 @@ function Coin() {
             </OverviewItem>
             <OverviewItem>
               <span>Price:</span>
-              <span>$ {tickersData?.quotes.USD.price.toFixed(3)}</span>
+              <span>$ {tickersData?.quotes?.USD?.price?.toFixed(3)}</span>
             </OverviewItem>
           </Overview>
           <Description>{infoData?.description}</Description>
@@ -225,7 +247,7 @@ function Coin() {
           </Tabs>
           <Switch>
             <Route path={`/:coinId/chart`}>
-              <Chart coinId={coinId} />
+              <Chart isDark={isDark} coinId={coinId} />
             </Route>
             <Route path={`/:coinId/price`}>
               <Price coinId={coinId} />

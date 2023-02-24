@@ -1,6 +1,4 @@
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import Router from "./Router";
 // import { ReactQueryDevtools } from "react-query/devtools";
 import { ThemeProvider } from "styled-components";
@@ -70,35 +68,14 @@ a {
 }
 `;
 
-const FontAwesomeIconTheme = styled(FontAwesomeIcon)``;
-const Icon = styled.span`
-  position: absolute;
-  right: 31%;
-  top: 7.8%;
-  transform: translateY(-50%);
-  margin-right: 12px;
-  opacity: 0.8;
-  &:hover {
-    transition: color 0.2s ease-in;
-    color: ${(props) => props.theme.accentColor};
-  }
-`;
-
 function App() {
   const [isDark, setIsDark] = useState(false);
   const toggleDark = () => setIsDark((current) => !current);
-  console.log(isDark);
   return (
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <Icon onClick={toggleDark}>
-          <FontAwesomeIconTheme
-            icon={isDark ? faMoon : faSun}
-            className="fa-search"
-          ></FontAwesomeIconTheme>
-        </Icon>
         <GlobalStyle />
-        <Router />
+        <Router isDark={isDark} toggleDark={toggleDark} />
         {/* <ReactQueryDevtools initialIsOpen={true} /> */}
       </ThemeProvider>
     </>
